@@ -11,6 +11,10 @@ function EmployeeItem({employee}) {
         <Link to={`/employee/${employee._id}`} className='btn btn-reverse btn-sm' >
             View
         </Link>
+
+        <Link to={`/update-employee/${employee._id}`} className='btn btn-reverse btn-sm' >
+            Edit
+        </Link>
     </div>
   )
 }

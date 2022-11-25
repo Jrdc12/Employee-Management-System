@@ -9,6 +9,9 @@ import NewEmployee from './pages/NewEmployee';
 import PrivateRoute from './components/PrivateRoute';
 import Employees from './pages/Employees';
 import Employee from './pages/Employee';
+import UpdateEmployee from './pages/UpdateEmployee';
+
+
 
 function App() {
   return (
@@ -28,6 +31,9 @@ function App() {
             </Route>
             <Route path='/employee/:employeeId' element={<PrivateRoute />}>
               <Route path='/employee/:employeeId' element={<Employee />} />
+            </Route>
+            <Route path='/update-employee/:employeeId' element={<PrivateRoute />}>
+              <Route path='/update-employee/:employeeId' element={<UpdateEmployee />} />
             </Route>
           </Routes>
         </div>

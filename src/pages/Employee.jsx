@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getEmployee, reset } from "../features/employees/employeeSlice";
+import { useParams, useNavigate } from "react-router-dom";
+import { getEmployee, reset, deleteEmployee } from "../features/employees/employeeSlice";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 
@@ -12,6 +12,7 @@ function Employee() {
 	);
 
 	const params = useParams();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { employeeId} = useParams();
 
@@ -22,6 +23,14 @@ function Employee() {
 
 		dispatch(getEmployee(employeeId));
 	}, [isError, message, employeeId]);
+
+	// Delete employee
+	const onDeleteEmployee = () => {
+		dispatch(deleteEmployee(employeeId));
+		toast.success("Employee deleted successfully");
+		navigate("/employees");
+	}
+
 
 	if (isLoading) {
 		return <Spinner />;
@@ -40,6 +49,11 @@ function Employee() {
 				<h2>Gender: {employee.gender}</h2>
 				<h2>Salary: {employee.salary}</h2>
 			</header>
+
+			<button onClick={onDeleteEmployee} className='btn btn-block btn-danger'>
+				Delete Employee
+			</button>
+
 		</div>
 	);
 }
