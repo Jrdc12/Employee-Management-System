@@ -26,7 +26,7 @@ function Login() {
 
 		// Redirect when logged in
 		if(isSuccess || user) {
-			toast.success(message)
+			toast.success("Logged in successfully")
 			navigate('/')
 		}
 

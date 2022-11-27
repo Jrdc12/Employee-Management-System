@@ -27,7 +27,7 @@ function NewEmployee() {
 
         if (isSuccess) {
             dispatch(reset());
-            toast.success(message);
+            toast.success("Employee Created Successfully");
             navigate("/employees");
         }
 

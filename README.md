@@ -45,3 +45,8 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # 101295616_COMP3123_ASSIGNMENT2
+
+# Test User login
+The user login to start manipulating data is
+username: test123
+password: test123456

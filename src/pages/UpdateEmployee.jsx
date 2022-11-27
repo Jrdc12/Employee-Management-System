@@ -41,6 +41,7 @@ function UpdateEmployee() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
+		toast.success("Employee Updated Successfully");
 		dispatch(updateEmployee({ email, first_name, last_name, gender, salary, _id: employee._id }));
 	};
 
@@ -52,7 +53,7 @@ function UpdateEmployee() {
 		<>
             <BackButton url="/" />
 			<section className='heading'>
-				<h1>New Employee</h1>
+				<h1>Update Employee</h1>
 				<p>Please fill out the form below</p>
 			</section>
 			<section className='form'>
