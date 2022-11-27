@@ -73,10 +73,13 @@ export const getEmployee = createAsyncThunk(
 // Update Employee by ID 
 export const updateEmployee = createAsyncThunk(
     "employees/update",
-    async ({employeeData, employeeId}, thunkAPI) => {
+    async (data, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.token;
-            return await employeeService.updateEmployee(employeeId,employeeData, token);
+            console.log("PLAYLOAD ---->", data) 
+            const response = await employeeService.updateEmployee(data._id, data, token);
+            return response
+
         } catch (error) {
             const message =
                 (error.response &&

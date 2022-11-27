@@ -2,8 +2,11 @@ import axios from "axios";
 // import https from "https";
 
 // change this later to the actual api url
-const url = "//localhost:4000/api/user/signup";
-const urlLogin = "//localhost:4000/api/user/login";
+// const url = "//localhost:4000/api/user/signup";
+// const urlLogin = "//localhost:4000/api/user/login";
+
+const url = "https://101295616-comp-3123-assignment-1.vercel.app/api/user/signup"
+const urlLogin = "https://101295616-comp-3123-assignment-1.vercel.app/api/user/login"
 
 // Register user
 const register = async (userData) => {

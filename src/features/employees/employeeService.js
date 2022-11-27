@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const createEmployeeURL = "//localhost:4000/api/emp/employees"
+// const createEmployeeURL = "//localhost:4000/api/emp/employees"
+const createEmployeeURL = "https://101295616-comp-3123-assignment-1.vercel.app/api/emp/employees"
 
 
 
@@ -53,12 +54,18 @@ const updateEmployee = async (employeeId, employeeData, token) => {
         }
     }
 
-    const response = await axios.put(createEmployeeURL + employeeId, employeeData, config)
-    if(response.data) {
-        return employeeId
+    try {
+        const response = await axios.put(createEmployeeURL + employeeId, employeeData, config)
+        console.log("response.data ----->", response.data)
+        return response.data
+    } catch (error) {
+        console.log(error)
     }
 
-    return response.data
+    // const response = await axios.put(createEmployeeURL + employeeId, employeeData, config)
+    // if(response.data) {
+    //     return employeeId
+    // }
 }
 
 

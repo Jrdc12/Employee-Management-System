@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createEmployee, reset, updateEmployee } from "../features/employees/employeeSlice";
 import Spinner from "../components/Spinner";
@@ -10,34 +10,38 @@ function UpdateEmployee() {
 	const { isLoading, isError, isSuccess, message } = useSelector(
 		(state) => state.employees
 	);
-	const [email, setEmail] = useState("");
-	const [first_name, setFirstName] = useState("");
-	const [last_name, setLastName] = useState("");
-	const [gender, setGender] = useState("");
-	const [salary, setSalary] = useState("");
-
+	
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const location = useLocation();
+	
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message);
-            console.log(message);
-        }
+	const employee = location.state.employee
 
-        if (isSuccess) {
-            dispatch(reset());
-            toast.success(message);
-            navigate("/employees");
-        }
+	const [email, setEmail] = useState(employee.email);
+	const [first_name, setFirstName] = useState(employee.first_name);
+	const [last_name, setLastName] = useState(employee.last_name);
+	const [gender, setGender] = useState(employee.gender);
+	const [salary, setSalary] = useState(employee.salary);
 
-        dispatch(reset());
-    }, [dispatch, isError, isSuccess, message, navigate]);
+    // useEffect(() => {
+    //     if (isError) {
+    //         toast.error(message);
+    //         console.log(message);
+    //     }
+
+    //     if (isSuccess) {
+    //         dispatch(reset());
+    //         toast.success(message);
+    //         navigate("/employees");
+    //     }
+
+    //     dispatch(reset());
+    // }, [dispatch, isError, isSuccess, message, navigate]);
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		dispatch(updateEmployee({ email, first_name, last_name, gender, salary }));
-        console.log(updateEmployee)
+		dispatch(updateEmployee({ email, first_name, last_name, gender, salary, _id: employee._id }));
 	};
 
     if(isLoading) {
@@ -56,7 +60,8 @@ function UpdateEmployee() {
 					<div className='form-group'>
 						<label htmlFor='EmployeeFirstName'>Employee First Name</label>
 						<input
-							tpye='text'
+							defaultValue={employee.first_name}
+							type='text'
 							className='form-control'
 							onChange={(e) => setFirstName(e.target.value)}
 							value={first_name}
@@ -65,7 +70,8 @@ function UpdateEmployee() {
 					<div className='form-group'>
 						<label htmlFor='EmployeeLastName'>Employee Last Name</label>
 						<input
-							tpye='text'
+							defaultValue={employee.last_name}
+							type='text'
 							className='form-control'
 							onChange={(e) => setLastName(e.target.value)}
 							value={last_name}
@@ -74,7 +80,8 @@ function UpdateEmployee() {
 					<div className='form-group'>
 						<label htmlFor='EmployeeEmail'>Employee Email</label>
 						<input
-							tpye='text'
+							defaultValue={employee.email}
+							type='text'
 							className='form-control'
 							onChange={(e) => setEmail(e.target.value)}
 							value={email}
@@ -83,7 +90,8 @@ function UpdateEmployee() {
 					<div className='form-group'>
 						<label htmlFor='EmployeeGender'>Employee Gender</label>
 						<input
-							tpye='text'
+							defaultValue={employee.gender}
+							type='text'
 							className='form-control'
 							onChange={(e) => setGender(e.target.value)}
 							value={gender}
@@ -92,7 +100,8 @@ function UpdateEmployee() {
 					<div className='form-group'>
 						<label htmlFor='EmployeeSalary'>Employee Salary</label>
 						<input
-							tpye='text'
+							defaultValue={employee.salary}
+							type='text'
 							className='form-control'
 							onChange={(e) => setSalary(e.target.value)}
 							value={salary}
