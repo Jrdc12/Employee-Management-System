@@ -50,3 +50,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 The user login to start manipulating data is
 username: test123
 password: test123456
+
+
+#LIVE DEMO
+https://101295616-comp-3104-assignment2.vercel.app/
